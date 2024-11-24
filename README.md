@@ -2,6 +2,9 @@
 
 This tool exports SQL Tables and Views to Excel files and then also optionally uploads them to an FTP site for integrations with cloud systems and provide an easier solution compared with SSIS which will often not work well with large text fields
 
+If you are looking for a tool that works the other way around exporting from Excel into SQL then please see the other project instead:
+https://github.com/robinwilson16/ExcelSQLImporter
+
 ## Purpose
 
 The tool was created as a replacement for Microsoft SQL Integration Services (SSIS) which can work well with smaller files but these days has a lot of limitations which this tool overcomes:
