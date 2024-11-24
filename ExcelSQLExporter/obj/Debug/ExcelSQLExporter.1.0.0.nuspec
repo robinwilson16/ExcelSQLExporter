@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>ExcelSQLExporter</id>
+    <version>1.0.0</version>
+    <authors>ExcelSQLExporter</authors>
+    <description>Package Description</description>
+    <repository type="git" />
+    <dependencies>
+      <group targetFramework="net9.0">
+        <dependency id="Microsoft.Data.SqlClient" version="5.2.2" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.EntityFrameworkCore" version="9.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.EntityFrameworkCore.SqlServer" version="9.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration.Binder" version="9.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration.Json" version="9.0.0" exclude="Build,Analyzers" />
+        <dependency id="NPOI" version="2.7.2" exclude="Build,Analyzers" />
+        <dependency id="WinSCP" version="6.3.5" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <contentFiles>
+      <files include="any/net9.0/appsettings.Development.json" buildAction="Content" />
+      <files include="any/net9.0/appsettings.json" buildAction="Content" />
+      <files include="any/net9.0/WinSCP.exe" buildAction="Content" />
+    </contentFiles>
+  </metadata>
+  <files>
+    <file src="C:\Users\Robin.Wilson.SHCG\source\repos\ExcelSQLExporter\ExcelSQLExporter\bin\Debug\net9.0\ExcelSQLExporter.runtimeconfig.json" target="lib\net9.0\ExcelSQLExporter.runtimeconfig.json" />
+    <file src="C:\Users\Robin.Wilson.SHCG\source\repos\ExcelSQLExporter\ExcelSQLExporter\bin\Debug\net9.0\ExcelSQLExporter.dll" target="lib\net9.0\ExcelSQLExporter.dll" />
+    <file src="C:\Users\Robin.Wilson.SHCG\source\repos\ExcelSQLExporter\ExcelSQLExporter\appsettings.Development.json" target="content\appsettings.Development.json" />
+    <file src="C:\Users\Robin.Wilson.SHCG\source\repos\ExcelSQLExporter\ExcelSQLExporter\appsettings.Development.json" target="contentFiles\any\net9.0\appsettings.Development.json" />
+    <file src="C:\Users\Robin.Wilson.SHCG\source\repos\ExcelSQLExporter\ExcelSQLExporter\appsettings.json" target="content\appsettings.json" />
+    <file src="C:\Users\Robin.Wilson.SHCG\source\repos\ExcelSQLExporter\ExcelSQLExporter\appsettings.json" target="contentFiles\any\net9.0\appsettings.json" />
+    <file src="C:\Users\Robin.Wilson.SHCG\.nuget\packages\winscp\6.3.5\tools\WinSCP.exe" target="content\WinSCP.exe" />
+    <file src="C:\Users\Robin.Wilson.SHCG\.nuget\packages\winscp\6.3.5\tools\WinSCP.exe" target="contentFiles\any\net9.0\WinSCP.exe" />
+  </files>
+</package>
