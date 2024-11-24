@@ -52,6 +52,7 @@ namespace ExcelSQLExporter
             }
 
             var databaseConnection = config.GetSection("DatabaseConnection");
+            var databaseTable = config.GetSection("DatabaseTable");
             var excelFile = config.GetSection("ExcelFile");
             var ftpConnection = config.GetSection("FTPConnection");
             string excelFilePath = excelFile["Folder"] + "\\" + excelFile["FileName"];
@@ -75,10 +76,11 @@ namespace ExcelSQLExporter
 
                 await connection.OpenAsync();
                 Console.WriteLine($"\nConnected to {sqlConnection.DataSource}");
+                Console.WriteLine($"Loading data from table {databaseTable["TableOrView"]}");
 
                 var sql =
                     @"SELECT *
-                    FROM ProSolutionReports.dbo.VW_WEB_CourseMarketingData CRS";
+                    FROM [" + databaseTable["Database"] + "].[" + databaseTable["Schema"] + "].[" + databaseTable["TableOrView"] + "]";
 
                 await using var command = new SqlCommand(sql, connection);
                 await using var reader = await command.ExecuteReaderAsync();
@@ -86,8 +88,16 @@ namespace ExcelSQLExporter
 
                 Console.WriteLine("Loading Data into Excel\n");
                 //Excel File from NPOI
-                var book = new XSSFWorkbook();
-                var sheet = book.CreateSheet("Sheet1");
+                XSSFWorkbook book = new XSSFWorkbook();
+
+                //Get Sheet Name
+                string? sheetName = "Sheet1";
+                if (!String.IsNullOrEmpty(excelFile["SheetName"]))
+                {
+                    sheetName = excelFile["SheetName"];
+                }
+
+                ISheet sheet = book.CreateSheet(sheetName);
 
                 //Cell Styles
                 var cellStyleDate = book.CreateCellStyle();

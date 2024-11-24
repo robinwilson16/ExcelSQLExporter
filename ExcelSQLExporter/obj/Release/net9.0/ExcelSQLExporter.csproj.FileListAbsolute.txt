@@ -175,3 +175,4 @@ C:\Users\Robin.Wilson.SHCG\source\repos\ExcelSQLExporter\ExcelSQLExporter\obj\Re
 C:\Users\Robin.Wilson.SHCG\source\repos\ExcelSQLExporter\ExcelSQLExporter\obj\Release\net9.0\ref\ExcelSQLExporter.dll
 C:\Users\Robin.Wilson.SHCG\source\repos\ExcelSQLExporter\ExcelSQLExporter\bin\Release\net9.0\appsettings3.json
 C:\Users\Robin.Wilson.SHCG\source\repos\ExcelSQLExporter\ExcelSQLExporter\bin\Release\net9.0\appsettings2.json
+C:\Users\Robin.Wilson.SHCG\source\repos\ExcelSQLExporter\ExcelSQLExporter\obj\Release\net9.0\ExcelSQLExporter.sourcelink.json

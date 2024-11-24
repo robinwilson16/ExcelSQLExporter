@@ -12,6 +12,12 @@
     <PackageIcon>ExcelExportIcon.png</PackageIcon>
     <PackageTags>Excel, SQL, SSIS</PackageTags>
     <PackageLicenseExpression> GPL-3.0-or-later</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/robinwilson16/ExcelSQLExporter</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/robinwilson16/ExcelSQLExporter</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <AssemblyVersion>1.0.1</AssemblyVersion>
+    <FileVersion>1.0.1</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,6 +38,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
     <None Include="G:\My Drive\Pictures\Excel Export Icons\ExcelExportIcon.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>

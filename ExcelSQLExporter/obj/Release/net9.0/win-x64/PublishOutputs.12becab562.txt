@@ -1,0 +1,7 @@
+C:\Users\Robin.Wilson.SHCG\source\repos\ExcelSQLExporter\ExcelSQLExporter\bin\Release\net9.0\publish\amd64\ExcelSQLExporter.pdb
+C:\Users\Robin.Wilson.SHCG\source\repos\ExcelSQLExporter\ExcelSQLExporter\bin\Release\net9.0\publish\amd64\appsettings3.json
+C:\Users\Robin.Wilson.SHCG\source\repos\ExcelSQLExporter\ExcelSQLExporter\bin\Release\net9.0\publish\amd64\appsettings2.json
+C:\Users\Robin.Wilson.SHCG\source\repos\ExcelSQLExporter\ExcelSQLExporter\bin\Release\net9.0\publish\amd64\appsettings.json
+C:\Users\Robin.Wilson.SHCG\source\repos\ExcelSQLExporter\ExcelSQLExporter\bin\Release\net9.0\publish\amd64\WinSCP.exe
+C:\Users\Robin.Wilson.SHCG\source\repos\ExcelSQLExporter\ExcelSQLExporter\bin\Release\net9.0\publish\amd64\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\Robin.Wilson.SHCG\source\repos\ExcelSQLExporter\ExcelSQLExporter\bin\Release\net9.0\publish\amd64\ExcelSQLExporter.exe

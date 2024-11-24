@@ -167,3 +167,4 @@ C:\Users\Robin.Wilson.SHCG\source\repos\ExcelSQLExporter\ExcelSQLExporter\obj\Re
 C:\Users\Robin.Wilson.SHCG\source\repos\ExcelSQLExporter\ExcelSQLExporter\obj\Release\net9.0\win-arm64\ExcelSQLExporter.pdb
 C:\Users\Robin.Wilson.SHCG\source\repos\ExcelSQLExporter\ExcelSQLExporter\obj\Release\net9.0\win-arm64\ExcelSQLExporter.genruntimeconfig.cache
 C:\Users\Robin.Wilson.SHCG\source\repos\ExcelSQLExporter\ExcelSQLExporter\obj\Release\net9.0\win-arm64\ref\ExcelSQLExporter.dll
+C:\Users\Robin.Wilson.SHCG\source\repos\ExcelSQLExporter\ExcelSQLExporter\obj\Release\net9.0\win-arm64\ExcelSQLExporter.sourcelink.json
