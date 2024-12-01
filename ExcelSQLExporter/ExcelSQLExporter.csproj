@@ -5,11 +5,11 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <ApplicationIcon>ExcelExportIcon.ico</ApplicationIcon>
+    <ApplicationIcon>SQLToExcel.ico</ApplicationIcon>
     <Title>Excel SQL Exporter</Title>
     <Copyright>Robin Wilson</Copyright>
     <Description>Exports SQL Tables and Views to Excel files and then also optionally uploads them to an FTP site for integrations with cloud systems and provide an easier solution compared with SSIS which will often not work well with large text fields</Description>
-    <PackageIcon>ExcelExportIcon.png</PackageIcon>
+    <PackageIcon>SQLToExcel.png</PackageIcon>
     <PackageTags>Excel, SQL, SSIS</PackageTags>
     <PackageLicenseExpression> GPL-3.0-or-later</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/robinwilson16/ExcelSQLExporter</PackageProjectUrl>
@@ -34,7 +34,7 @@
     <Content Include="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="ExcelExportIcon.ico" />
+    <Content Include="SQLToExcel.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,7 +42,7 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <None Include="G:\My Drive\Pictures\Excel Export Icons\ExcelExportIcon.png">
+    <None Include="G:\My Drive\Dev\Excel Import and Export Tools\SQLToExcel.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
