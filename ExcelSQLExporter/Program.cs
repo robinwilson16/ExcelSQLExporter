@@ -11,6 +11,8 @@ using System.IO;
 using MathNet.Numerics.Optimization;
 using Microsoft.Extensions.Configuration;
 using WinSCP;
+using System.Reflection;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace ExcelSQLExporter
 {
@@ -20,7 +22,10 @@ namespace ExcelSQLExporter
         {
             Console.WriteLine("\nExport SQL Table or View to Excel File");
             Console.WriteLine("=========================================\n");
-            Console.WriteLine("Copyright Robin Wilson");
+
+            string? productVersion = Assembly.GetExecutingAssembly().GetName().Version?.ToString();
+            Console.WriteLine($"Version {productVersion}");
+            Console.WriteLine($"Copyright Robin Wilson");
 
             string configFile = "appsettings.json";
             string? customConfigFile = null;
@@ -55,7 +60,8 @@ namespace ExcelSQLExporter
             var databaseTable = config.GetSection("DatabaseTable");
             var excelFile = config.GetSection("ExcelFile");
             var ftpConnection = config.GetSection("FTPConnection");
-            string excelFilePath = excelFile["Folder"] + "\\" + excelFile["FileName"];
+            string[]? filePaths = { @excelFile["Folder"] ?? "", excelFile["FileName"] ?? "" };
+            string excelFilePath = Path.Combine(filePaths);
 
             var sqlConnection = new SqlConnectionStringBuilder
             {
@@ -68,12 +74,12 @@ namespace ExcelSQLExporter
 
             var connectionString = sqlConnection.ConnectionString;
 
+            //Database Connection
+            Console.WriteLine("Connecting to Database\n");
+            await using var connection = new SqlConnection(connectionString);
+            
             try
             {
-                //Database Connection
-                await using var connection = new SqlConnection(connectionString);
-                Console.WriteLine("Connecting to Database\n");
-
                 await connection.OpenAsync();
                 Console.WriteLine($"\nConnected to {sqlConnection.DataSource}");
                 Console.WriteLine($"Loading data from table {databaseTable["TableOrView"]}");
@@ -178,10 +184,18 @@ namespace ExcelSQLExporter
                     book.Write(fileStream);
                     Console.WriteLine($"File Saved to {fileStream.Name}");
                 }
+
+                await connection.CloseAsync();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
+
+                if (connection != null)
+                {
+                    await connection.CloseAsync();
+                }
+
                 return 1;
             }
 
