@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using WinSCP;
 using System.Reflection;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using System.Globalization;
 
 namespace ExcelSQLExporter
 {
@@ -56,6 +57,15 @@ namespace ExcelSQLExporter
                 return 1;
             }
 
+            Console.WriteLine($"\nSetting Locale To {config["Locale"]}");
+
+            //Set locale to ensure dates and currency are correct
+            CultureInfo culture = new CultureInfo(config["Locale"] ?? "en-GB");
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
+            CultureInfo.DefaultThreadCurrentCulture = culture;
+            CultureInfo.DefaultThreadCurrentUICulture = culture;
+
             var databaseConnection = config.GetSection("DatabaseConnection");
             var databaseTable = config.GetSection("DatabaseTable");
             var excelFile = config.GetSection("ExcelFile");
@@ -95,7 +105,7 @@ namespace ExcelSQLExporter
                 Console.WriteLine("Loading Data into Excel\n");
                 //Excel File from NPOI
                 XSSFWorkbook book = new XSSFWorkbook();
-
+                
                 //Get Sheet Name
                 string? sheetName = "Sheet1";
                 if (!String.IsNullOrEmpty(excelFile["SheetName"]))
@@ -107,11 +117,11 @@ namespace ExcelSQLExporter
 
                 //Cell Styles
                 var cellStyleDate = book.CreateCellStyle();
-                cellStyleDate.DataFormat = book.CreateDataFormat().GetFormat("dd/MM/yyyy");
+                cellStyleDate.DataFormat = book.CreateDataFormat().GetFormat(excelFile["DateFormat"]);
                 var cellStyleTime = book.CreateCellStyle();
-                cellStyleTime.DataFormat = book.CreateDataFormat().GetFormat("HH:mm");
+                cellStyleTime.DataFormat = book.CreateDataFormat().GetFormat(excelFile["TimeFormat"]);
                 var cellStyleCurrency = book.CreateCellStyle();
-                cellStyleCurrency.DataFormat = book.CreateDataFormat().GetFormat("£#,0");
+                cellStyleCurrency.DataFormat = book.CreateDataFormat().GetFormat(excelFile["CurrencyFormat"]);
 
                 int line = 0;
                 while (await reader.ReadAsync())
