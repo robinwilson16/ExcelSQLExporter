@@ -95,8 +95,8 @@ namespace ExcelSQLExporter
                 Console.WriteLine($"Loading data from table {databaseTable["TableOrView"]}");
 
                 var sql =
-                    @"SELECT *
-                    FROM [" + databaseTable["Database"] + "].[" + databaseTable["Schema"] + "].[" + databaseTable["TableOrView"] + "]";
+                    $@"SELECT *
+                    FROM [{databaseTable["Database"]}].[{databaseTable["Schema"]}].[{databaseTable["TableOrView"]}]";
 
                 await using var command = new SqlCommand(sql, connection);
                 await using var reader = await command.ExecuteReaderAsync();
