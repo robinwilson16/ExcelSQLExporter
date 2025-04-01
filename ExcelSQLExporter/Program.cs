@@ -223,7 +223,7 @@ namespace ExcelSQLExporter
                         Password = ftpConnection["Password"]
                     };
 
-                    switch (ftpConnection["Type"])
+                    switch (ftpConnection?["Type"])
                     {
                         case "FTP":
                             sessionOptions.Protocol = Protocol.Ftp;
@@ -237,12 +237,23 @@ namespace ExcelSQLExporter
                             sessionOptions.Protocol = Protocol.Sftp;
                             sessionOptions.GiveUpSecurityAndAcceptAnyTlsHostCertificate = true;
                             break;
+                        case "SCP":
+                            sessionOptions.Protocol = Protocol.Scp;
+                            sessionOptions.GiveUpSecurityAndAcceptAnyTlsHostCertificate = true;
+                            break;
                         default:
                             sessionOptions.Protocol = Protocol.Ftp;
                             break;
                     }
 
-                    switch (ftpConnection["Mode"])
+                    if (ftpConnection?["SSHHostKeyFingerprint"]?.Length > 0)
+                    {
+                        sessionOptions.SshHostKeyFingerprint = ftpConnection["SSHHostKeyFingerprint"];
+                        sessionOptions.GiveUpSecurityAndAcceptAnyTlsHostCertificate = false;
+                    }
+                        
+
+                    switch (ftpConnection?["Mode"])
                     {
                         case "Active":
                             sessionOptions.FtpMode = FtpMode.Active;
