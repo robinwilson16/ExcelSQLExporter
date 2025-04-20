@@ -70,8 +70,6 @@ namespace ExcelSQLExporter
             var databaseTable = config.GetSection("DatabaseTable");
             var excelFile = config.GetSection("ExcelFile");
             var ftpConnection = config.GetSection("FTPConnection");
-            string[]? filePaths = { @excelFile["Folder"] ?? "", excelFile["FileName"] ?? "" };
-            string excelFilePath = Path.Combine(filePaths);
 
             var sqlConnection = new SqlConnectionStringBuilder
             {
@@ -87,22 +85,63 @@ namespace ExcelSQLExporter
             //Database Connection
             Console.WriteLine("Connecting to Database\n");
             await using var connection = new SqlConnection(connectionString);
-            
+            string excelFilePath = "";
+
+            string? columnNameAsFileNameValue = null;
+            int? columnNameAsFileNameIndex = null;
+
             try
             {
                 await connection.OpenAsync();
                 Console.WriteLine($"\nConnected to {sqlConnection.DataSource}");
-                Console.WriteLine($"Loading data from table {databaseTable["TableOrView"]}");
+                
 
-                var sql =
-                    $@"SELECT *
-                    FROM [{databaseTable["Database"]}].[{databaseTable["Schema"]}].[{databaseTable["TableOrView"]}]";
+                string sql = "";
+
+                if (databaseTable["StoredProcedureCommand"]?.Length > 0)
+                {
+                    Console.WriteLine($"Executing Stored Procedure {databaseTable["StoredProcedureCommand"]}");
+
+                    sql = $@"[{databaseTable["Database"]}].[{databaseTable["Schema"]}].[{databaseTable["StoredProcedureCommand"]}]";
+                }
+                else
+                {
+                    Console.WriteLine($"Loading data from table {databaseTable["TableOrView"]}");
+
+                    sql =
+                        $@"SELECT *
+                        FROM [{databaseTable["Database"]}].[{databaseTable["Schema"]}].[{databaseTable["TableOrView"]}]";
+                }
 
                 await using var command = new SqlCommand(sql, connection);
+
+                //If stored procedure specified with parameters then add these
+                if (databaseTable["StoredProcedureCommand"]?.Length > 0)
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    if (databaseTable["StoredProcedureParam1IntegerName"]?.Length > 0)
+                    {
+                        command.Parameters.AddWithValue("@" + databaseTable["StoredProcedureParam1IntegerName"], SqlDbType.Int).Value = databaseTable["StoredProcedureParam1IntegerValue"];
+                    }
+                    if (databaseTable["StoredProcedureParam2IntegerName"]?.Length > 0)
+                    {
+                        command.Parameters.AddWithValue("@" + databaseTable["StoredProcedureParam2IntegerName"], SqlDbType.Int).Value = databaseTable["StoredProcedureParam2IntegerValue"];
+                    }
+                    if (databaseTable["StoredProcedureParam1StringName"]?.Length > 0)
+                    {
+                        command.Parameters.AddWithValue("@" + databaseTable["StoredProcedureParam1StringName"], SqlDbType.NVarChar).Value = databaseTable["StoredProcedureParam1StringValue"];
+                    }
+                    if (databaseTable["StoredProcedureParam2StringName"]?.Length > 0)
+                    {
+                        command.Parameters.AddWithValue("@" + databaseTable["StoredProcedureParam2StringName"], SqlDbType.NVarChar).Value = databaseTable["StoredProcedureParam2StringValue"];
+                    }
+                }
+
                 await using var reader = await command.ExecuteReaderAsync();
 
 
-                Console.WriteLine("Loading Data into Excel\n");
+                Console.WriteLine("\nLoading Data into Excel");
                 //Excel File from NPOI
                 XSSFWorkbook book = new XSSFWorkbook();
                 
@@ -133,8 +172,18 @@ namespace ExcelSQLExporter
 
                         for (int cell = 0; cell < reader.FieldCount; cell++)
                         {
-                            var headerCell = topRow.CreateCell(cell);
-                            headerCell.SetCellValue(reader.GetName(cell));
+                            //Get file name from column if specified and found
+                            if (reader.GetName(cell) == excelFile["ColumnNameAsFileName"])
+                            {
+                                columnNameAsFileNameValue = reader.GetString(cell);
+                                columnNameAsFileNameIndex = cell;
+                                Console.WriteLine($"Using Custom File Name from Table Column '{excelFile["ColumnNameAsFileName"]}': {columnNameAsFileNameValue}");
+                            }
+                            else
+                            {
+                                var headerCell = topRow.CreateCell(cell);
+                                headerCell.SetCellValue(reader.GetName(cell));
+                            } 
                         }
 
                         line++;
@@ -145,6 +194,12 @@ namespace ExcelSQLExporter
 
                     for (int cell = 0; cell < reader.FieldCount; cell++)
                     {
+                        //Skip column used for file name
+                        if (cell == columnNameAsFileNameIndex)
+                        {
+                            continue;
+                        }
+
                         var bodyCell = row.CreateCell(cell);
                         if (reader.IsDBNull(cell) == true)
                         {
@@ -188,7 +243,22 @@ namespace ExcelSQLExporter
                     line++;
                 }
 
-                Console.WriteLine("Saving Excel file");
+                Console.WriteLine("\nSaving Excel file");
+
+                string[]? filePaths = { @excelFile["Folder"] ?? "", excelFile["FileName"] ?? "" };
+
+                //If column name specified then use this as the file name instead of the one in the config file
+                if (columnNameAsFileNameValue?.Length > 0)
+                {
+                    if (columnNameAsFileNameValue.Substring(columnNameAsFileNameValue.Length - 5) != ".xlsx")
+                    {
+                        columnNameAsFileNameValue = columnNameAsFileNameValue + ".xlsx";
+                    }
+                    filePaths = [ @excelFile["Folder"] ?? "", columnNameAsFileNameValue ?? "" ];
+                }
+
+                excelFilePath = Path.Combine(filePaths);
+
                 using (var fileStream = File.Create(excelFilePath ?? ""))
                 {
                     book.Write(fileStream);
@@ -266,7 +336,15 @@ namespace ExcelSQLExporter
                             break;
                     }
 
+                    Console.WriteLine("\nUploading Excel File");
                     Console.WriteLine($"Uploading File to {sessionOptions.HostName}");
+
+                    string uploadPath = Path.Combine("/", ftpConnection?["FolderPath"] ?? "");
+
+                    if (uploadPath.Substring(uploadPath.Length - 1) != "/")
+                    {
+                        uploadPath = uploadPath + "/";
+                    }
 
                     try
                     {
@@ -284,7 +362,7 @@ namespace ExcelSQLExporter
 
                             TransferOperationResult transferResult;
                             transferResult =
-                                session.PutFiles(excelFilePath, "/", false, transferOptions);
+                                session.PutFiles(excelFilePath, uploadPath, false, transferOptions);
 
                             // Throw on any error
                             transferResult.Check();
@@ -296,7 +374,7 @@ namespace ExcelSQLExporter
                             }
                         }
 
-                        Console.WriteLine($"File Uploaded to {sessionOptions.HostName}");
+                        Console.WriteLine($"File Uploaded to {sessionOptions.HostName} to {uploadPath + columnNameAsFileNameValue ?? excelFile["FileName"] ?? ""}");
                         return 0;
                     }
                     catch (Exception e)

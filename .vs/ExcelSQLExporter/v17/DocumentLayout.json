@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\robin.wilson\\source\\repos\\ExcelSQLExporter\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{358F6E87-70AC-4F40-899B-6A580B584FC6}|ExcelSQLExporter\\ExcelSQLExporter.csproj|c:\\users\\robin.wilson\\source\\repos\\excelsqlexporter\\excelsqlexporter\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{358F6E87-70AC-4F40-899B-6A580B584FC6}|ExcelSQLExporter\\ExcelSQLExporter.csproj|solutionrelative:excelsqlexporter\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{358F6E87-70AC-4F40-899B-6A580B584FC6}|ExcelSQLExporter\\ExcelSQLExporter.csproj|c:\\users\\robin.wilson\\source\\repos\\excelsqlexporter\\excelsqlexporter\\appsettings3.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{358F6E87-70AC-4F40-899B-6A580B584FC6}|ExcelSQLExporter\\ExcelSQLExporter.csproj|solutionrelative:excelsqlexporter\\appsettings3.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{358F6E87-70AC-4F40-899B-6A580B584FC6}|ExcelSQLExporter\\ExcelSQLExporter.csproj|c:\\users\\robin.wilson\\source\\repos\\excelsqlexporter\\excelsqlexporter\\appsettings2.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{358F6E87-70AC-4F40-899B-6A580B584FC6}|ExcelSQLExporter\\ExcelSQLExporter.csproj|solutionrelative:excelsqlexporter\\appsettings2.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{358F6E87-70AC-4F40-899B-6A580B584FC6}|ExcelSQLExporter\\ExcelSQLExporter.csproj|c:\\users\\robin.wilson\\source\\repos\\excelsqlexporter\\excelsqlexporter\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{358F6E87-70AC-4F40-899B-6A580B584FC6}|ExcelSQLExporter\\ExcelSQLExporter.csproj|solutionrelative:excelsqlexporter\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{358F6E87-70AC-4F40-899B-6A580B584FC6}|ExcelSQLExporter\\ExcelSQLExporter.csproj|c:\\users\\robin.wilson\\source\\repos\\excelsqlexporter\\excelsqlexporter\\excelsqlexporter.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
@@ -17,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{358F6E87-70AC-4F40-899B-6A580B584FC6}|ExcelSQLExporter\\ExcelSQLExporter.csproj|c:\\users\\robin.wilson\\source\\repos\\excelsqlexporter\\excelsqlexporter\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{358F6E87-70AC-4F40-899B-6A580B584FC6}|ExcelSQLExporter\\ExcelSQLExporter.csproj|solutionrelative:excelsqlexporter\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{358F6E87-70AC-4F40-899B-6A580B584FC6}|ExcelSQLExporter\\ExcelSQLExporter.csproj|c:\\users\\robin.wilson\\source\\repos\\excelsqlexporter\\excelsqlexporter\\appsettings3.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{358F6E87-70AC-4F40-899B-6A580B584FC6}|ExcelSQLExporter\\ExcelSQLExporter.csproj|solutionrelative:excelsqlexporter\\appsettings3.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,32 +30,59 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings3.json",
+              "DocumentMoniker": "C:\\Users\\robin.wilson\\source\\repos\\ExcelSQLExporter\\ExcelSQLExporter\\appsettings3.json",
+              "RelativeDocumentMoniker": "ExcelSQLExporter\\appsettings3.json",
+              "ToolTip": "C:\\Users\\robin.wilson\\source\\repos\\ExcelSQLExporter\\ExcelSQLExporter\\appsettings3.json",
+              "RelativeToolTip": "ExcelSQLExporter\\appsettings3.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-11-24T09:08:26.021Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\robin.wilson\\source\\repos\\ExcelSQLExporter\\ExcelSQLExporter\\appsettings.json",
+              "RelativeDocumentMoniker": "ExcelSQLExporter\\appsettings.json",
+              "ToolTip": "C:\\Users\\robin.wilson\\source\\repos\\ExcelSQLExporter\\ExcelSQLExporter\\appsettings.json",
+              "RelativeToolTip": "ExcelSQLExporter\\appsettings.json",
+              "ViewState": "AgIAABYAAAAAAAAAAAAkwDQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-11-23T12:05:29.361Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\robin.wilson\\source\\repos\\ExcelSQLExporter\\ExcelSQLExporter\\Program.cs",
+              "RelativeDocumentMoniker": "ExcelSQLExporter\\Program.cs",
+              "ToolTip": "C:\\Users\\robin.wilson\\source\\repos\\ExcelSQLExporter\\ExcelSQLExporter\\Program.cs",
+              "RelativeToolTip": "ExcelSQLExporter\\Program.cs",
+              "ViewState": "AgIAAH0BAAAAAAAAAAAAAI4BAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-23T11:39:52.141Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "ExcelSQLExporter",
               "DocumentMoniker": "C:\\Users\\robin.wilson\\source\\repos\\ExcelSQLExporter\\ExcelSQLExporter\\ExcelSQLExporter.csproj",
               "RelativeDocumentMoniker": "ExcelSQLExporter\\ExcelSQLExporter.csproj",
               "ToolTip": "C:\\Users\\robin.wilson\\source\\repos\\ExcelSQLExporter\\ExcelSQLExporter\\ExcelSQLExporter.csproj",
               "RelativeToolTip": "ExcelSQLExporter\\ExcelSQLExporter.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-12-02T15:41:49.45Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "appsettings3.json",
-              "DocumentMoniker": "C:\\Users\\robin.wilson\\source\\repos\\ExcelSQLExporter\\ExcelSQLExporter\\appsettings3.json",
-              "RelativeDocumentMoniker": "ExcelSQLExporter\\appsettings3.json",
-              "ToolTip": "C:\\Users\\robin.wilson\\source\\repos\\ExcelSQLExporter\\ExcelSQLExporter\\appsettings3.json",
-              "RelativeToolTip": "ExcelSQLExporter\\appsettings3.json",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAACQAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-11-24T09:08:26.021Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-02T15:41:49.45Z"
             },
             {
               "$type": "Document",
@@ -65,40 +92,9 @@
               "RelativeDocumentMoniker": "ExcelSQLExporter\\appsettings2.json",
               "ToolTip": "C:\\Users\\robin.wilson\\source\\repos\\ExcelSQLExporter\\ExcelSQLExporter\\appsettings2.json",
               "RelativeToolTip": "ExcelSQLExporter\\appsettings2.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAABYAAAAAAAAAAAAkwDQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-11-24T09:05:57.663Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\robin.wilson\\source\\repos\\ExcelSQLExporter\\ExcelSQLExporter\\appsettings.json",
-              "RelativeDocumentMoniker": "ExcelSQLExporter\\appsettings.json",
-              "ToolTip": "C:\\Users\\robin.wilson\\source\\repos\\ExcelSQLExporter\\ExcelSQLExporter\\appsettings.json",
-              "RelativeToolTip": "ExcelSQLExporter\\appsettings.json",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABgAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-11-23T12:05:29.361Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\robin.wilson\\source\\repos\\ExcelSQLExporter\\ExcelSQLExporter\\Program.cs",
-              "RelativeDocumentMoniker": "ExcelSQLExporter\\Program.cs",
-              "ToolTip": "C:\\Users\\robin.wilson\\source\\repos\\ExcelSQLExporter\\ExcelSQLExporter\\Program.cs",
-              "RelativeToolTip": "ExcelSQLExporter\\Program.cs",
-              "ViewState": "AgIAAN0AAAAAAAAAAAAqwPwAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-23T11:39:52.141Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+              "WhenOpened": "2024-11-24T09:05:57.663Z"
             }
           ]
         }
