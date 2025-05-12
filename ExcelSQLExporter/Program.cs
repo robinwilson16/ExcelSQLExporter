@@ -14,6 +14,7 @@ using WinSCP;
 using System.Reflection;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Globalization;
+using ExcelSQLExporter.Services;
 
 namespace ExcelSQLExporter
 {
@@ -21,12 +22,19 @@ namespace ExcelSQLExporter
     {
         static async Task<int> Main(string[] args)
         {
-            Console.WriteLine("\nExport SQL Table or View to Excel File");
-            Console.WriteLine("=========================================\n");
+            bool? logToFile = true;
+            bool? outputToScreen = true;
+
+            string? toolName = Assembly.GetExecutingAssembly().GetName().Name;
+            string logFileName = $"{toolName} - {DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss")}.log";
+
+            await LoggingService.Log(toolName, logFileName, logToFile, outputToScreen);
+            await LoggingService.Log("Export SQL Table or View to Excel File", logFileName, logToFile, outputToScreen);
+            await LoggingService.Log("=========================================", logFileName, logToFile, outputToScreen);
 
             string? productVersion = Assembly.GetExecutingAssembly().GetName().Version?.ToString();
-            Console.WriteLine($"Version {productVersion}");
-            Console.WriteLine($"Copyright Robin Wilson");
+            await LoggingService.Log($"\nVersion {productVersion}", logFileName, logToFile, outputToScreen);
+            await LoggingService.Log($"\nCopyright Robin Wilson", logFileName, logToFile, outputToScreen);
 
             string configFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "appsettings.json");
             string? customConfigFile = null;
@@ -40,7 +48,7 @@ namespace ExcelSQLExporter
                 configFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, customConfigFile);
             }
 
-            Console.WriteLine($"\nUsing Config File {configFile}");
+            await LoggingService.Log($"\nUsing Config File {configFile}", logFileName, logToFile, outputToScreen);
 
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
@@ -53,11 +61,11 @@ namespace ExcelSQLExporter
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error: {0}", e);
+                await LoggingService.Log($"Error: {e}", logFileName, logToFile, outputToScreen);
                 return 1;
             }
 
-            Console.WriteLine($"\nSetting Locale To {config["Locale"]}");
+            await LoggingService.Log($"\nSetting Locale To {config["Locale"]}", logFileName, logToFile, outputToScreen);
 
             //Set locale to ensure dates and currency are correct
             CultureInfo culture = new CultureInfo(config["Locale"] ?? "en-GB");
@@ -83,7 +91,7 @@ namespace ExcelSQLExporter
             var connectionString = sqlConnection.ConnectionString;
 
             //Database Connection
-            Console.WriteLine("Connecting to Database\n");
+            await LoggingService.Log("\nConnecting to Database", logFileName, logToFile, outputToScreen);
             await using var connection = new SqlConnection(connectionString);
             string excelFilePath = "";
 
@@ -93,20 +101,20 @@ namespace ExcelSQLExporter
             try
             {
                 await connection.OpenAsync();
-                Console.WriteLine($"\nConnected to {sqlConnection.DataSource}");
+                await LoggingService.Log($"\nConnected to {sqlConnection.DataSource}", logFileName, logToFile, outputToScreen);
                 
 
                 string sql = "";
 
                 if (databaseTable["StoredProcedureCommand"]?.Length > 0)
                 {
-                    Console.WriteLine($"Executing Stored Procedure {databaseTable["StoredProcedureCommand"]}");
+                    await LoggingService.Log($"Executing Stored Procedure {databaseTable["StoredProcedureCommand"]}", logFileName, logToFile, outputToScreen);
 
                     sql = $@"[{databaseTable["Database"]}].[{databaseTable["Schema"]}].[{databaseTable["StoredProcedureCommand"]}]";
                 }
                 else
                 {
-                    Console.WriteLine($"Loading data from table {databaseTable["TableOrView"]}");
+                    await LoggingService.Log($"Loading data from table {databaseTable["TableOrView"]}", logFileName, logToFile, outputToScreen);
 
                     sql =
                         $@"SELECT *
@@ -141,7 +149,7 @@ namespace ExcelSQLExporter
                 await using var reader = await command.ExecuteReaderAsync();
 
 
-                Console.WriteLine("\nLoading Data into Excel");
+                await LoggingService.Log("\nLoading Data into Excel", logFileName, logToFile, outputToScreen);
                 //Excel File from NPOI
                 XSSFWorkbook book = new XSSFWorkbook();
                 
@@ -177,7 +185,7 @@ namespace ExcelSQLExporter
                             {
                                 columnNameAsFileNameValue = reader.GetString(cell);
                                 columnNameAsFileNameIndex = cell;
-                                Console.WriteLine($"Using Custom File Name from Table Column '{excelFile["ColumnNameAsFileName"]}': {columnNameAsFileNameValue}");
+                                await LoggingService.Log($"Using Custom File Name from Table Column '{excelFile["ColumnNameAsFileName"]}': {columnNameAsFileNameValue}", logFileName, logToFile, outputToScreen);
                             }
                             else
                             {
@@ -243,7 +251,7 @@ namespace ExcelSQLExporter
                     line++;
                 }
 
-                Console.WriteLine("\nSaving Excel file");
+                await LoggingService.Log("\nSaving Excel file", logFileName, logToFile, outputToScreen);
 
                 string[]? filePaths = { @excelFile["Folder"] ?? "", excelFile["FileName"] ?? "" };
 
@@ -262,14 +270,14 @@ namespace ExcelSQLExporter
                 using (var fileStream = File.Create(excelFilePath ?? ""))
                 {
                     book.Write(fileStream);
-                    Console.WriteLine($"File Saved to {fileStream.Name}");
+                    await LoggingService.Log($"File Saved to {fileStream.Name}", logFileName, logToFile, outputToScreen);
                 }
 
                 await connection.CloseAsync();
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
+                await LoggingService.Log(e.ToString(), logFileName, logToFile, outputToScreen);
 
                 if (connection != null)
                 {
@@ -336,8 +344,8 @@ namespace ExcelSQLExporter
                             break;
                     }
 
-                    Console.WriteLine("\nUploading Excel File");
-                    Console.WriteLine($"Uploading File to {sessionOptions.HostName}");
+                    await LoggingService.Log("\nUploading Excel File", logFileName, logToFile, outputToScreen);
+                    await LoggingService.Log($"Uploading File to {sessionOptions.HostName}", logFileName, logToFile, outputToScreen);
 
                     string uploadPath = Path.Combine("/", ftpConnection?["FolderPath"] ?? "");
 
@@ -370,28 +378,28 @@ namespace ExcelSQLExporter
                             // Print results
                             foreach (TransferEventArgs transfer in transferResult.Transfers)
                             {
-                                Console.WriteLine("Upload of {0} succeeded", transfer.FileName);
+                                await LoggingService.Log($"Upload of {transfer.FileName} succeeded", logFileName, logToFile, outputToScreen);
                             }
                         }
 
-                        Console.WriteLine($"File Uploaded to {sessionOptions.HostName} to {uploadPath + columnNameAsFileNameValue ?? excelFile["FileName"] ?? ""}");
+                        await LoggingService.Log($"File Uploaded to {sessionOptions.HostName} to {uploadPath + columnNameAsFileNameValue ?? excelFile["FileName"] ?? ""}", logFileName, logToFile, outputToScreen);
                         return 0;
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("Error: {0}", e);
+                        await LoggingService.Log($"Error: {e}", logFileName, logToFile, outputToScreen);
                         return 1;
                     }
                 }
                 else
                 {
-                    Console.WriteLine($"Not Uploading File to FTP as Option in Config is False");
+                    await LoggingService.Log($"Not Uploading File to FTP as Option in Config is False", logFileName, logToFile, outputToScreen);
                     return 0;
                 }
             }
             else
             {
-                Console.WriteLine($"The File at {excelFilePath} Could Not Be Found");
+                await LoggingService.Log($"The File at {excelFilePath} Could Not Be Found", logFileName, logToFile, outputToScreen);
                 return 1;
             }
         }
