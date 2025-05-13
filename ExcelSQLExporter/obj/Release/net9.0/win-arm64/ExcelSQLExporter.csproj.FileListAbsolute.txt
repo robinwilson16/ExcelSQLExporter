@@ -176,7 +176,6 @@ C:\Users\robin.wilson\source\repos\ExcelSQLExporter\ExcelSQLExporter\bin\Release
 C:\Users\robin.wilson\source\repos\ExcelSQLExporter\ExcelSQLExporter\bin\Release\net9.0\win-arm64\ExcelSQLExporter.deps.json
 C:\Users\robin.wilson\source\repos\ExcelSQLExporter\ExcelSQLExporter\bin\Release\net9.0\win-arm64\ExcelSQLExporter.runtimeconfig.json
 C:\Users\robin.wilson\source\repos\ExcelSQLExporter\ExcelSQLExporter\bin\Release\net9.0\win-arm64\ExcelSQLExporter.dll
-C:\Users\robin.wilson\source\repos\ExcelSQLExporter\ExcelSQLExporter\bin\Release\net9.0\win-arm64\ExcelSQLExporter.pdb
 C:\Users\robin.wilson\source\repos\ExcelSQLExporter\ExcelSQLExporter\bin\Release\net9.0\win-arm64\Azure.Core.dll
 C:\Users\robin.wilson\source\repos\ExcelSQLExporter\ExcelSQLExporter\bin\Release\net9.0\win-arm64\Azure.Identity.dll
 C:\Users\robin.wilson\source\repos\ExcelSQLExporter\ExcelSQLExporter\bin\Release\net9.0\win-arm64\BouncyCastle.Cryptography.dll
@@ -338,6 +337,5 @@ C:\Users\robin.wilson\source\repos\ExcelSQLExporter\ExcelSQLExporter\obj\Release
 C:\Users\robin.wilson\source\repos\ExcelSQLExporter\ExcelSQLExporter\obj\Release\net9.0\win-arm64\ExcelSQL.132A110B.Up2Date
 C:\Users\robin.wilson\source\repos\ExcelSQLExporter\ExcelSQLExporter\obj\Release\net9.0\win-arm64\ExcelSQLExporter.dll
 C:\Users\robin.wilson\source\repos\ExcelSQLExporter\ExcelSQLExporter\obj\Release\net9.0\win-arm64\refint\ExcelSQLExporter.dll
-C:\Users\robin.wilson\source\repos\ExcelSQLExporter\ExcelSQLExporter\obj\Release\net9.0\win-arm64\ExcelSQLExporter.pdb
 C:\Users\robin.wilson\source\repos\ExcelSQLExporter\ExcelSQLExporter\obj\Release\net9.0\win-arm64\ExcelSQLExporter.genruntimeconfig.cache
 C:\Users\robin.wilson\source\repos\ExcelSQLExporter\ExcelSQLExporter\obj\Release\net9.0\win-arm64\ref\ExcelSQLExporter.dll
