@@ -339,3 +339,4 @@ C:\Users\robin.wilson\source\repos\ExcelSQLExporter\ExcelSQLExporter\obj\Release
 C:\Users\robin.wilson\source\repos\ExcelSQLExporter\ExcelSQLExporter\obj\Release\net9.0\win-arm64\refint\ExcelSQLExporter.dll
 C:\Users\robin.wilson\source\repos\ExcelSQLExporter\ExcelSQLExporter\obj\Release\net9.0\win-arm64\ExcelSQLExporter.genruntimeconfig.cache
 C:\Users\robin.wilson\source\repos\ExcelSQLExporter\ExcelSQLExporter\obj\Release\net9.0\win-arm64\ref\ExcelSQLExporter.dll
+C:\Users\robin.wilson\source\repos\ExcelSQLExporter\ExcelSQLExporter\bin\Release\net9.0\win-arm64\ZString.dll
