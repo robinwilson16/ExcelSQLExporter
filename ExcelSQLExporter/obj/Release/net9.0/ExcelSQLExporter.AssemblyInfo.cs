@@ -18,7 +18,7 @@ using System.Reflection;
     " to an FTP site for integrations with cloud systems and provide an easier soluti" +
     "on compared with SSIS which will often not work well with large text fields")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.11")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d0fe2b8caf2c9e7fb01e837512bad4adaf9b6702")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+61eaf608c1f5adb267806d193fe519a9bbc82395")]
 [assembly: System.Reflection.AssemblyProductAttribute("ExcelSQLExporter")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ExcelSQLExporter")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.11")]
